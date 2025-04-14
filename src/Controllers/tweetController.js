@@ -13,7 +13,7 @@ export const getTweetsByID = (req,res) =>{
 
 export const createTweet = (req,res) =>{
     return res.json({
-        msg:"tweet route",
+        msg:"tweet route creating",
         body: req.body
     });
 }

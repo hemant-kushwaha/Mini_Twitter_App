@@ -1,19 +1,14 @@
 import express from 'express';
+import { getTweets } from '../../Controllers/tweetController.js';
+import { getTweetsByID ,createTweet} from '../../Controllers/tweetController.js';
 
 const router = express.Router();
 
-router.get('/',(req,res) =>{
-    return res.json({
-        msg:"tweet route"
-    });
-});
+router.get('/',getTweets);
 
-router.get('/:id',(req,res) =>{
-    return res.json({
-        msg:"tweet route",
-        id: req.params.id
-    });
-});
+router.get('/:id',getTweetsByID);
+
+router.post('/',createTweet);
 
 
 export default router;

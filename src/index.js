@@ -30,21 +30,6 @@ app.get('/ping', (req, res) => {
     });
 }); // what to do if someone makes a GET request to /ping
 
-app.post('/hello/*', (req, res) => {
-    console.log("query params", req.query); // query params
-    console.log("req body", req.body); // req body
-    return res.json({
-        message: 'world'
-    });
-}); //
-
-app.get('/tweets/:tweet_id/comments/:comment_id', (req, res) => {
-    console.log(req.params); // url params
-    return res.json({
-        message: 'tweet details'
-    });
-});
-
 app.all('*', (req, res) => {
     return res.status(404).json({
         message: 'Not found'

@@ -4,6 +4,7 @@ import { createTweet as createTweetService,
          getTweetById as getTweetByIdService,
          deleteTweet as deleteTweetService,
          updateTweet as updateTweetService} from "../services/tweetService.js";
+import {errorResponse} from '../utils/responses.js'
 
 
 export const createTweet = async (req, res) => {
@@ -29,17 +30,7 @@ export const createTweet = async (req, res) => {
             message: "tweet created successsfully"
         })
     } catch (e) {
-        console.log(e);
-        if (e.status) {
-            return res.status(e.status).json({
-                message: e.message,
-                success: false
-            })
-        }
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: 'Internal Server Error',
-            success: false
-        })
+        return errorResponse(error);
     }
 }
 
@@ -55,11 +46,8 @@ export const getTweets = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error);
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: 'Internal Server Error',
-            success: false
-        });
+        return errorResponse(error);
+
     }
 
 }
@@ -76,18 +64,8 @@ export const getTweetById = async (req,res) => {
 
     } catch (error) {
 
-        console.log(error);
-        if (error.status) {
-            return res.status(error.status).json({
-                message: error.message,
-                success: false,
-            });
-        }
+        return errorResponse(error);
 
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: 'Internal Server Error',
-            success: false
-        });
     }
 
 }
@@ -104,17 +82,8 @@ export const deleteTweet = async (req,res) => {
         })
 
     } catch (error) {
-         console.log(error);
-        if (error.status) {
-            return res.status(error.status).json({
-                message: error.message,
-                success: false,
-            });
-        }
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message:'Something went wrong',
-            success: false
-        })
+        return errorResponse(error);
+
     }
 }
 
@@ -129,17 +98,6 @@ export const updateTweet = async (req,res) =>{
         })
         
     } catch (error) {
-        console.log(error);
-        if (error.status) {
-            return res.status(error.status).json({
-                message: error.message,
-                success: false,
-            });
-        }
-
-        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message:'Internal Server Error',
-            success: false
-        })
+       return errorResponse(error);
     }
 }

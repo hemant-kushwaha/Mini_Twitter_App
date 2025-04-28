@@ -1,7 +1,8 @@
 import { Filter } from "bad-words";
 import { createTweet as createTweetRepository , 
          getTweets as getTweetsRepository,
-         getTweetById as getTweetByIdRepository
+         getTweetById as getTweetByIdRepository,
+         deleteTweet as deleteTweetRepositry
  } from "../repositries/tweetRepository.js";
 
 export const createTweet = async ({body,image}) => {
@@ -38,4 +39,15 @@ export const getTweetById = async (id) => {
     
     return tweet;
 
+}
+
+export const deleteTweet = async (id) => {
+    const response = await deleteTweetRepositry(id);
+    if(!response) {
+        throw {
+            message:'Tweet not found',
+            status: 404
+        };         
+    }
+    return response;
 }

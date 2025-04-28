@@ -1,7 +1,7 @@
 import express from 'express';
 import C_uploader from '../../config/multerConfig.js'; // Import the configured Multer middleware
 
-import { deleteTweet, getTweets } from '../../Controllers/tweetController.js';
+import { deleteTweet, getTweets, updateTweet } from '../../Controllers/tweetController.js';
 import { getTweetById ,createTweet} from '../../Controllers/tweetController.js';
 import {validate} from '../../Validators/zodValidator.js'
 import { tweetZodSchema } from '../../Validators/tweetZodSchema.js';
@@ -15,6 +15,8 @@ router.get('/:id',getTweetByIdManualValidator ,getTweetById);
 router.post('/', C_uploader.single('tweetImage'),validate(tweetZodSchema),createTweet);
 
 router.delete('/:id', getTweetByIdManualValidator ,deleteTweet);
+
+router.put('/:id',getTweetByIdManualValidator,updateTweet);
 
 
 export default router;

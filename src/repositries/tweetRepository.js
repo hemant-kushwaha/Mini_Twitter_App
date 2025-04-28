@@ -37,3 +37,15 @@ export const deleteTweet = async (tweetId) => {
 
     }
 }
+
+export const updateTweet = async (tweetId, body) =>{
+    try {
+        const tweet = await Tweet.findByIdAndUpdate(tweetId, {body}, { new: true, runValidators: true });
+
+        return tweet;
+        
+    } catch (error) {
+        throw error;
+    }
+
+}

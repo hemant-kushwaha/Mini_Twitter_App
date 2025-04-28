@@ -1,5 +1,9 @@
+import cloudinaryPkg from 'cloudinary';
 import dotenv from 'dotenv';
-import cloudinary from 'cloudinary';
+
+// Destructure v2 from cloudinary
+const { v2: cloudinary } = cloudinaryPkg;
+
 dotenv.config();
 
 cloudinary.config({
@@ -9,3 +13,5 @@ cloudinary.config({
 });
 
 console.log('Cloudinary configuration successful!');
+
+export default cloudinary; // Export the configured cloudinary instance

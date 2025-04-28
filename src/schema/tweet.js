@@ -6,8 +6,13 @@ const tweetSchema = new mongoose.Schema({
         required:true,
         trim:true,
         maxlength:280
-    }
-});
+    },
+    image: {
+        type: String, // Store image URL as string
+        default: null, // optional
+    },
+   
+},{ timestamps: true });
 
 const Tweet =  mongoose.model("tweet",tweetSchema); //tweet Collection
 

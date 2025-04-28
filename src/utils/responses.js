@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-export const errorResponse = (error) => {
+export const errorResponse = (error, res) => {
      console.log(error);
             if (error.status) {
                 return res.status(error.status).json({
@@ -13,4 +13,12 @@ export const errorResponse = (error) => {
                 message:'Internal Server Error',
                 success: false
             })
+}
+
+export const successResponse = (data, statusCode, message,res) => {
+    return res.status(statusCode).json({
+        success:true,
+        data,
+        message
+    })
 }

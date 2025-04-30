@@ -4,24 +4,43 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npx nodemon src/index.js"
+    "start": "npx nodemon src/index.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.26.3",
     "bad-words": "^4.0.0",
     "cloudinary": "^1.21.0",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "http-status-codes": "^2.3.0",
+    "jest": "^29.7.0",
     "mongoose": "^8.13.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.2",
     "multer-storage-cloudinary": "^4.0.0",
     "nodemon": "^3.1.7",
     "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "jest-html-reporter": "^4.1.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "reporters": [
+      "default",
+      [
+        "./node_modules/jest-html-reporter",
+        {
+          "pageTitle": "Test Report"
+        }
+      ]
+    ]
   }
 }

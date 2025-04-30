@@ -1,0 +1,8 @@
+// .babelrc
+{
+	"env":{// what environment like test, dev etc
+		"test":{//tells test enviroment -> want babel modification of behaviour while running test oonly
+			"plugins": ["@babel/plugin-transform-modules-commonjs"] // extend the tranfomation capabilities allowing us to modifying the JS code
+			}// ES6 into commonjs moduling conversion
+		}
+}

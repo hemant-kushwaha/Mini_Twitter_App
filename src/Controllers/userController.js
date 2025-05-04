@@ -7,6 +7,8 @@ import { errorResponse, successResponse } from '../utils/responses.js'
 
 
 export const signUpUser = async (req,res) => {
+    console.log("Signup request body:", req.body);
+
     try {
         const response = await registerUserService({
             username: req.body.username,
@@ -24,13 +26,21 @@ export const signUpUser = async (req,res) => {
 
 export const signInUser = async (req, res) => {
     try {
-        const {user} = await loginUserService({
+        const {token,user} = await loginUserService({
             email: req.body.email,
             password: req.body.password
 
         });
 
-        return successResponse({user:{ id: user.id, email: user.email,username: user.username} },
+        res.cookie("token",token,{
+            httpOnly:true,
+            sameSite:"strict",
+            maxAge:3500000
+        })
+
+        return successResponse(
+            
+            {user:{ id: user.id, email: user.email,username: user.username} },
                                 StatusCodes.OK, "user signed In successfully",res);
 
     } catch (error) {

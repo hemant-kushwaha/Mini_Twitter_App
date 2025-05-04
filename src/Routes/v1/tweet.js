@@ -6,17 +6,18 @@ import { getTweetById ,createTweet} from '../../Controllers/tweetController.js';
 import {validate} from '../../Validators/zodValidator.js'
 import { tweetZodSchema } from '../../Validators/tweetZodSchema.js';
 import {getTweetByIdManualValidator} from '../../Validators/tweetManualValidator.js'
+import { authenticateToken } from '../../middleware/authMiddleware.js';
 const router = express.Router();
 
-router.get('/',getTweets);
+router.get('/',authenticateToken,getTweets);
 
-router.get('/:id',getTweetByIdManualValidator ,getTweetById);
+router.get('/:id',authenticateToken,getTweetByIdManualValidator ,getTweetById);
 
-router.post('/', C_uploader.single('tweetImage'),validate(tweetZodSchema),createTweet);
+router.post('/', authenticateToken,C_uploader.single('tweetImage'),validate(tweetZodSchema),createTweet);
 
-router.delete('/:id', getTweetByIdManualValidator ,deleteTweet);
+router.delete('/:id',authenticateToken, getTweetByIdManualValidator ,deleteTweet);
 
-router.put('/:id',getTweetByIdManualValidator,updateTweet);
+router.put('/:id',authenticateToken,getTweetByIdManualValidator,updateTweet);
 
 
 export default router;

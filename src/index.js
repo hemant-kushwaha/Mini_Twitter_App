@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import {PORT} from './config/serverConfig.js';
 import apiRouter from './Routes/apiRouter.js';
 import connectDB from './config/dbConfig.js';
+import cookieParser from 'cookie-parser';
 
 
 
@@ -18,6 +19,7 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded());
+app.use(cookieParser());
 
 app.use('/api',apiRouter);
 
@@ -36,6 +38,8 @@ app.all('*', (req, res) => {
         message: 'Not found'
     });
 });
+
+
 
 // Define a PORT and attach it to the express app
 app.listen(PORT, () => {
